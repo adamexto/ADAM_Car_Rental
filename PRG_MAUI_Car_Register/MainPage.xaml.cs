@@ -16,10 +16,11 @@
             {
                 Vehicle vehicle = new Vehicle((Vehicle.Type)pickerType.SelectedIndex);
 
-                string regNr = entryRegistrationNumber.Text;
-                vehicle.RegistrationNumber = regNr;
+                vehicle.RegistrationNumber = entryRegistrationNumber.Text;
                 vehicle.Manufacturer = entryManufacturer.Text;
-                vehicle.Model = entryModel.Text;
+                vehicle.VehicleModel = entryModel.Text;
+                vehicle.YearModel = entryYearModel.Text;
+
 
                 vehicleList.Add(vehicle);
                 listViewVehicles.ItemsSource = null;
@@ -28,6 +29,7 @@
                 entryRegistrationNumber.Text = string.Empty;
                 entryManufacturer.Text = string.Empty;
                 entryModel.Text = string.Empty;
+                entryYearModel.Text = string.Empty;
             }
             catch (ArgumentException ex)
             {
@@ -80,7 +82,7 @@
                 labelSearchResult.Text = $"Fordon hittat:\n" +
                                          $"Registreringsnummer: {foundVehicle.RegistrationNumber}\n" +
                                          $"Tillverkare: {foundVehicle.Manufacturer}\n" +
-                                         $"Modell: {foundVehicle.Model}\n" +
+                                         $"Modell: {foundVehicle.VehicleModel}\n" +
                                          $"Typ: {foundVehicle.VehicleType}";
             }
             else
