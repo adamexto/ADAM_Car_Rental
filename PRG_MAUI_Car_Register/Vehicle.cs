@@ -75,7 +75,7 @@ namespace PRG_MAUI_Car_Register
             get { return vehicleModel; }
             set
             {
-
+                
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentException("Glöm inte att skriva in fordons model");
 
