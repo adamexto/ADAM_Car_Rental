@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/PRG_MAUI_Car_Register/Vehicle.cs
+/PRG_MAUI_Car_Register/MainPage.xaml
+/PRG_MAUI_Car_Register/MainPage.xaml.cs
+/PRG_MAUI_Car_Register/Vehicle.cs
+/PRG_MAUI_Car_Register/MainPage.xaml.cs
+/PRG_MAUI_Car_Register/MainPage.xaml

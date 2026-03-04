@@ -1,33 +1,23 @@
 ﻿using System.Text.RegularExpressions;
-namespace PRG_MAUI_Car_Register
+namespace PRG_MAUI_Car_Register.Model
 {
-    class Vehicle
+    abstract class Vehicle
     {
         // Medlemsvariabler
-        public enum Type { Bil, MC, Lastbil };
-        private Type vehicleType;
         private string registrationNumber = string.Empty;
         private string manufacturer = string.Empty;
         private string vehicleModel = string.Empty;
         private string yearModel = string.Empty;
 
-
-        // Konstruktor (en metod med samma namn som klassen, som returnerar ett objekt)
-        public Vehicle(Type vehicleType) // en konstruktor kan, men måste inte, ta parametrar
-        {
-            this.vehicleType = vehicleType;
-
-
-        }
-
         // Get-Set för att hålla variablerna privata, och för att validera inkommande värden från UI (user interface, användargränssnittet)
+
         public string RegistrationNumber
         {
             get { return registrationNumber; }
 
             set
             {
-                if (!String.IsNullOrWhiteSpace(value))
+                if (!string.IsNullOrWhiteSpace(value))
                 {
                     if (value.Length == 6)
                     {
@@ -60,33 +50,21 @@ namespace PRG_MAUI_Car_Register
                 registrationNumber = value.ToUpper();
             }
         }
-
-
-        // Fordonstyp tas in från dropdown-menyn, och behöver därför inte valideras
-        public Type VehicleType
-        {
-            get { return vehicleType; }
-            set { this.vehicleType = value; }
-        }
-
-        //TODO Tillverkare ska valideras, sparas i objektet och visas i UI
         public string VehicleModel
         {
             get { return vehicleModel; }
             set
             {
-                
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentException("Glöm inte att skriva in fordons model");
 
                 if (!Regex.IsMatch(value, @"^[a-zA-Z0-9]+$"))
                     throw new ArgumentException("Model får bara innehålla bokstäver, siffror och mellanslag");
 
-                this.vehicleModel = value;
+                vehicleModel = value;
             }
         }
 
-        //TODO Modell ska valideras, sparas i objektet och visas i UI
         public string Manufacturer
         {
             get { return manufacturer; }
@@ -98,7 +76,7 @@ namespace PRG_MAUI_Car_Register
                 if (!Regex.IsMatch(value, @"^[a-zA-Z0-9]+$"))
                     throw new ArgumentException("Tillverkare får bara innehålla bokstäver, siffror och mellanslag");
 
-                this.manufacturer = value;
+                manufacturer = value;
             }
         }
 
@@ -121,18 +99,15 @@ namespace PRG_MAUI_Car_Register
                 if (parsedYear < minYear || parsedYear > maxYear)
                     throw new ArgumentException($"Årsmodell måste vara mellan {minYear} och {maxYear}.");
 
-                this.yearModel = value;
+                yearModel = value;
             }
         }
 
-        //TODO Att spara årsmodell ska möjliggöras, ska valideras, sparas i objektet och visas i UI
-
         // Klassens eventuella övriga metoder brukar finnas här, här en override av ToString()
 
-        //TODO Modifiera overriden på ToString() så att allt visas som önskat i UIs listBox
         public override string ToString()
         {
-            return this.registrationNumber + "\t" + this.vehicleType + "\t" + this.vehicleModel + "\t" + this.manufacturer + "\t" + this.yearModel;
+            return registrationNumber + "\t" + vehicleModel + "\t" + manufacturer + "\t" + yearModel;
         }
     }
 }

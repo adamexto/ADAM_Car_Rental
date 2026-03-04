@@ -8,29 +8,27 @@
             <Image Source="car.jpg" Aspect="AspectFit" HeightRequest="150" Margin="0,0,0,20"/>
             
             <HorizontalStackLayout Spacing="20" HorizontalOptions="StartAndExpand">
-                <Entry x:Name="entryRegistrationNumber" Placeholder="Registreringsnummer" />
+                <Entry x:Name="entryRegistrationNumber" Placeholder="Registreringsnummer"/>
                 <Label Text="Välj typ:" VerticalOptions="Center"/>
-                <Picker x:Name="pickerType" TextColor="DarkRed">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
+                <Picker x:Name="VehiclePicker" TextColor="DarkRed">
+                    <Picker.Items>
                         <x:String>Bil</x:String>
                         <x:String>MC</x:String>
                         <x:String>Lastbil</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+                    </Picker.Items>
             </Picker>
             </HorizontalStackLayout>
-            <Entry x:Name="entryManufacturer" Placeholder="Tillverkare" />
-            <Entry x:Name="entryModel" Placeholder="Modell" />
+            <Entry x:Name="entryManufacturer" Placeholder="Tillverkare"/>
+            <Entry x:Name="entryModel" Placeholder="Modell"/>
             <Entry x:Name="entryYearModel" Placeholder="Årsmodell (t.ex. 2015)" Keyboard="Numeric"/>
             <Button x:Name="buttonRegister" Text="Registrera" Clicked="OnRegisterClicked" Margin="0,0,0,20" BackgroundColor="DarkRed"/>
 
-            <Label Text="Kategori:" FontAttributes="Bold" />
-            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,0,0,20" Spacing="10" >
-                <RadioButton x:Name="radioAll" Content="Alla" IsChecked="True" CheckedChanged="OnRadioCheckedChanged" />
-                <RadioButton x:Name="radioCar" Content="Bilar" CheckedChanged="OnRadioCheckedChanged" />
-                <RadioButton x:Name="radioMC" Content="MC" CheckedChanged="OnRadioCheckedChanged" />
-                <RadioButton x:Name="radioTruck" Content="Lastbil" CheckedChanged="OnRadioCheckedChanged" />
+            <Label Text="Kategori:" FontAttributes="Bold"/>
+            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,0,0,20" Spacing="10">
+                <RadioButton x:Name="radioAll" Content="Alla" IsChecked="True"/>
+                <RadioButton x:Name="radioCar" Content="Bilar"/>
+                <RadioButton x:Name="radioMC" Content="MC"/>
+                <RadioButton x:Name="radioTruck" Content="Lastbil"/>
             </HorizontalStackLayout>
 
             <ListView x:Name="listViewVehicles" Margin="0,0,0,20"/>

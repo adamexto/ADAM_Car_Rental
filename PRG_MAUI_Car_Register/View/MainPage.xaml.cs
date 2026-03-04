@@ -1,4 +1,7 @@
-﻿namespace PRG_MAUI_Car_Register
+﻿using PRG_MAUI_Car_Register.Model;
+using System.Diagnostics;
+
+namespace PRG_MAUI_Car_Register
 {
     public partial class MainPage : ContentPage
     {
@@ -7,22 +10,38 @@
         public MainPage()
         {
             InitializeComponent();
-            pickerType.SelectedIndex = 0;
+            VehiclePicker.SelectedIndex = 0;
         }
 
         private void OnRegisterClicked(object sender, EventArgs e)
         {
             try
             {
-                Vehicle vehicle = new Vehicle((Vehicle.Type)pickerType.SelectedIndex);
+                Vehicle? _vehicle = null;
 
-                vehicle.RegistrationNumber = entryRegistrationNumber.Text;
-                vehicle.Manufacturer = entryManufacturer.Text;
-                vehicle.VehicleModel = entryModel.Text;
-                vehicle.YearModel = entryYearModel.Text;
+                if (VehiclePicker.SelectedIndex == -1)
+                    return;
+
+                if (VehiclePicker.SelectedIndex == 0)
+                {
+                    _vehicle = new Car();
+                }
+                else if (VehiclePicker.SelectedIndex == 1)
+                {
+                    _vehicle = new Truck();
+                }
+                else if (VehiclePicker.SelectedIndex == 2)
+                {
+                    _vehicle = new MC();
+                }
+
+                _vehicle.RegistrationNumber = entryRegistrationNumber.Text;
+                _vehicle.Manufacturer = entryManufacturer.Text;
+                _vehicle.VehicleModel = entryModel.Text;
+                _vehicle.YearModel = entryYearModel.Text;
 
 
-                vehicleList.Add(vehicle);
+                vehicleList.Add(_vehicle);
                 listViewVehicles.ItemsSource = null;
                 listViewVehicles.ItemsSource = vehicleList;
 
@@ -36,35 +55,6 @@
                 DisplayAlert("Fel", ex.Message, "OK");
             }
         }
-
-        private void OnRadioCheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            if (e.Value != true) return;
-
-            // Skapa en filtrerad lista baserat på vilken radioknapp som är vald
-            List<Vehicle> filteredList;
-
-            if (radioCar.IsChecked)
-            {
-                filteredList = vehicleList.Where(v => v.VehicleType == Vehicle.Type.Bil).ToList();
-            }
-            else if (radioMC.IsChecked)
-            {
-                filteredList = vehicleList.Where(v => v.VehicleType == Vehicle.Type.MC).ToList();
-            }
-            else if (radioTruck.IsChecked)
-            {
-                filteredList = vehicleList.Where(v => v.VehicleType == Vehicle.Type.Lastbil).ToList();
-            }
-            else
-            {
-                // Om "Alla" är vald, visa hela listan
-                filteredList = vehicleList;
-            }
-
-            listViewVehicles.ItemsSource = filteredList;
-        }
-
         private void OnSearchClicked(object sender, EventArgs e)
         {
             string searchTerm = entrySearchRegistrationNumber.Text?.ToLower();
@@ -82,8 +72,7 @@
                 labelSearchResult.Text = $"Fordon hittat:\n" +
                                          $"Registreringsnummer: {foundVehicle.RegistrationNumber}\n" +
                                          $"Tillverkare: {foundVehicle.Manufacturer}\n" +
-                                         $"Modell: {foundVehicle.VehicleModel}\n" +
-                                         $"Typ: {foundVehicle.VehicleType}";
+                                         $"Modell: {foundVehicle.VehicleModel}";
             }
             else
             {
