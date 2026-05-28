@@ -1,0 +1,2 @@
+﻿[assembly: XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "PRG_MAUI_Car_Register")]
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/dotnet/maui/global", "PRG_MAUI_Car_Register.Pages")]

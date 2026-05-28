@@ -5,6 +5,8 @@
         public AppShell()
         {
             InitializeComponent();
+            BindingContext = App.MainVM;
         }
     }
+
 }

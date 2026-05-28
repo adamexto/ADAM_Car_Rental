@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PRG_MAUI_Car_Register.View.MCPage"
+             Title="MC">
+    
+    <CollectionView ItemsSource="{Binding MCs}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+
+                <Border Stroke="DarkRed"
+                    StrokeThickness="2"
+                    Padding="12"
+                    Margin="10">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.25" Radius="10" />
+                    </Border.Shadow>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="{Binding RegistrationNumber}"
+                           FontAttributes="Bold"
+                           FontSize="20"/>
+
+                        <Label Text="{Binding Manufacturer}" />
+                        <Label Text="{Binding VehicleModel}" />
+                        <Label Text="{Binding YearModel}" />
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>

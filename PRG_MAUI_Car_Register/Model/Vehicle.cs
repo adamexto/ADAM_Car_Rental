@@ -1,15 +1,21 @@
 ﻿using System.Text.RegularExpressions;
 namespace PRG_MAUI_Car_Register.Model
 {
-    abstract class Vehicle
+    public abstract class Vehicle
     {
         // Medlemsvariabler
-        private string registrationNumber = string.Empty;
-        private string manufacturer = string.Empty;
-        private string vehicleModel = string.Empty;
-        private string yearModel = string.Empty;
+        public string registrationNumber { get; set; }
+        public string manufacturer { get; set; }
+        public string vehicleModel { get; set; }
+        public string yearModel { get; set; }
+        public abstract string Type { get; }
 
         // Get-Set för att hålla variablerna privata, och för att validera inkommande värden från UI (user interface, användargränssnittet)
+
+        public virtual string Describe()
+        {
+            return $"{Type}: {RegistrationNumber} – {Manufacturer} {VehicleModel} ({YearModel})";
+        }
 
         public string RegistrationNumber
         {
@@ -50,6 +56,7 @@ namespace PRG_MAUI_Car_Register.Model
                 registrationNumber = value.ToUpper();
             }
         }
+
         public string VehicleModel
         {
             get { return vehicleModel; }
@@ -101,13 +108,6 @@ namespace PRG_MAUI_Car_Register.Model
 
                 yearModel = value;
             }
-        }
-
-        // Klassens eventuella övriga metoder brukar finnas här, här en override av ToString()
-
-        public override string ToString()
-        {
-            return registrationNumber + "\t" + vehicleModel + "\t" + manufacturer + "\t" + yearModel;
         }
     }
 }

@@ -1,43 +1,105 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PRG_MAUI_Car_Register.MainPage">
+             x:Class="PRG_MAUI_Car_Register.View.MainPage"
+             Title="Registrera">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="10">
-            <Image Source="car.jpg" Aspect="AspectFit" HeightRequest="150" Margin="0,0,0,20"/>
-            
-            <HorizontalStackLayout Spacing="20" HorizontalOptions="StartAndExpand">
-                <Entry x:Name="entryRegistrationNumber" Placeholder="Registreringsnummer"/>
-                <Label Text="Välj typ:" VerticalOptions="Center"/>
-                <Picker x:Name="VehiclePicker" TextColor="DarkRed">
-                    <Picker.Items>
-                        <x:String>Bil</x:String>
-                        <x:String>MC</x:String>
-                        <x:String>Lastbil</x:String>
-                    </Picker.Items>
-            </Picker>
-            </HorizontalStackLayout>
-            <Entry x:Name="entryManufacturer" Placeholder="Tillverkare"/>
-            <Entry x:Name="entryModel" Placeholder="Modell"/>
-            <Entry x:Name="entryYearModel" Placeholder="Årsmodell (t.ex. 2015)" Keyboard="Numeric"/>
-            <Button x:Name="buttonRegister" Text="Registrera" Clicked="OnRegisterClicked" Margin="0,0,0,20" BackgroundColor="DarkRed"/>
+        <VerticalStackLayout Padding="20" Spacing="30">
 
-            <Label Text="Kategori:" FontAttributes="Bold"/>
-            <HorizontalStackLayout HorizontalOptions="Center" Margin="0,0,0,20" Spacing="10">
-                <RadioButton x:Name="radioAll" Content="Alla" IsChecked="True"/>
-                <RadioButton x:Name="radioCar" Content="Bilar"/>
-                <RadioButton x:Name="radioMC" Content="MC"/>
-                <RadioButton x:Name="radioTruck" Content="Lastbil"/>
-            </HorizontalStackLayout>
+            <Label Text="Register Vehicle"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center" />
 
-            <ListView x:Name="listViewVehicles" Margin="0,0,0,20"/>
+            <Border Stroke="DarkRed"
+                StrokeThickness="2"
+                Padding="20">
 
-            <HorizontalStackLayout HorizontalOptions="FillAndExpand" Spacing="20">
-                <Entry x:Name="entrySearchRegistrationNumber" HorizontalOptions="FillAndExpand" Placeholder="Sök på registreringsnummer"></Entry>
-                <Button x:Name="buttonSearch" Text="Sök" HorizontalOptions="End" BackgroundColor="DarkRed" TextColor="White" Clicked="OnSearchClicked"/>
-            </HorizontalStackLayout>
-            <Label x:Name="labelSearchResult" Text="Sökresultat visas här..." TextColor="DarkRed" Margin="0,20,0,0"/>
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.25" Radius="12" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="16">
+
+                    <Entry Placeholder="Registreringsnummer"
+                       Text="{Binding RegistrationNumber}"
+                       FontSize="18" />
+
+                    <Picker ItemsSource="{Binding VehicleTypes}"
+                        SelectedItem="{Binding SelectedVehicleType}"
+                        Title="Välj fordonstyp"
+                        FontSize="18" />
+
+                    <Entry Placeholder="Tillverkare"
+                       Text="{Binding Manufacturer}"
+                       FontSize="18" />
+
+                    <Entry Placeholder="Modell"
+                       Text="{Binding VehicleModel}"
+                       FontSize="18" />
+
+                    <Entry Placeholder="Årsmodell"
+                       Keyboard="Numeric"
+                       Text="{Binding YearModel}"
+                       FontSize="18" />
+
+                    <Button Text="Registrera"
+                        BackgroundColor="DarkRed"
+                        TextColor="White"
+                        CornerRadius="10"
+                        FontSize="18"
+                        Command="{Binding RegisterCommand}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <Label Text="Sök fordon"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="DarkRed"
+               HorizontalOptions="Center" />
+
+            <Border Stroke="DarkRed"
+                StrokeThickness="2"
+                Padding="20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.25" Radius="12" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="16">
+
+                    <Entry Placeholder="Sök registreringsnummer"
+                       Text="{Binding SearchTerm}"
+                       FontSize="18" />
+
+                    <Button Text="Sök"
+                        BackgroundColor="DarkRed"
+                        TextColor="White"
+                        CornerRadius="10"
+                        FontSize="18"
+                        Command="{Binding SearchCommand}" />
+
+                    <Label Text="{Binding SearchResult}"
+                       TextColor="White"
+                       FontAttributes="Italic"
+                       FontSize="16" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
         </VerticalStackLayout>
     </ScrollView>
 
