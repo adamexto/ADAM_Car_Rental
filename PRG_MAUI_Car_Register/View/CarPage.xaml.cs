@@ -7,5 +7,5 @@ namespace PRG_MAUI_Car_Register.View
 			InitializeComponent();
 			BindingContext = App.MainVM;
 		}
-	}
+    }
 }

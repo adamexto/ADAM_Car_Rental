@@ -156,6 +156,7 @@ namespace PRG_MAUI_Car_Register.ViewModel
                     $"Årsmodell: {found.YearModel}";
             }
         }
+
         private void ClearInputs()
         {
             RegistrationNumber = string.Empty;
