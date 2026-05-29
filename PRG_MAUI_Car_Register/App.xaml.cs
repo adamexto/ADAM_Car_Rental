@@ -10,6 +10,11 @@ namespace PRG_MAUI_Car_Register
             InitializeComponent();
 
             MainPage = new AppShell();
+
+            Task.Run(async () =>
+            {
+                await MainVM.LoadAll();
+            });
         }
     }
 }

@@ -23,7 +23,7 @@
         ContentTemplate="{DataTemplate local:MCPage}" />
 
     <ShellContent 
-        Title="Truck" 
+        Title="Trucks" 
         Route="TruckPage"
         ContentTemplate="{DataTemplate local:TruckPage}" />
 

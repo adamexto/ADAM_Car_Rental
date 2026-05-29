@@ -7,7 +7,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="30">
 
-            <Label Text="Register Vehicle"
+            <Label Text="Registrera"
                FontSize="28"
                FontAttributes="Bold"
                TextColor="White"

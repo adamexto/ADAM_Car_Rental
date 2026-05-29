@@ -1,4 +1,5 @@
 ﻿using PRG_MAUI_Car_Register.Model;
+using PRG_MAUI_Car_Register.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -134,6 +135,8 @@ namespace PRG_MAUI_Car_Register.ViewModel
                 await Application.Current.Windows[0].Page.DisplayAlert("Fel", ex.Message, "OK");
             }
 
+            await SaveAll();
+
             ClearInputs();
         }
 
@@ -155,6 +158,25 @@ namespace PRG_MAUI_Car_Register.ViewModel
                     $"Modell: {found.VehicleModel}\n" +
                     $"Årsmodell: {found.YearModel}";
             }
+        }
+
+        public async Task SaveAll()
+        {
+            await DataService.SaveAsync(AllVehicles.ToList());
+        }
+
+        public async Task LoadAll()
+        {
+            var list = await DataService.LoadAsync();
+
+            AllVehicles.Clear();
+
+            foreach (var v in list)
+                AllVehicles.Add(v);
+
+            OnChanged(nameof(Cars));
+            OnChanged(nameof(MCs));
+            OnChanged(nameof(Trucks));
         }
 
         private void ClearInputs()
